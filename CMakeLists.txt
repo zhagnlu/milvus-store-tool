@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.12)
 
 project(milvus-store-tool)
 
+set( CONAN_DISABLE_CHECK_COMPILER ON )
+
 add_compile_options(-std=c++17 -Wall)
 
 include( ${CMAKE_BINARY_DIR}/conanbuildinfo.cmake )

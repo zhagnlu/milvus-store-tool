@@ -53,6 +53,21 @@ class StoreTool(ConanFile):
     generators = ("cmake", "cmake_find_package")
     exports_sources = "src/*", "CMakeLists.txt"
 
+    def configure(self):
+        if self.settings.os == "Macos":
+            # Macos M1 cannot use jemalloc
+            if self.settings.arch not in ("x86_64", "x86"):
+                del self.options["folly"].use_sse4_2
+
+            self.options["arrow"].with_jemalloc = False
+            self.options["boost"].without_fiber = True
+            self.options["boost"].without_json = True
+            self.options["boost"].without_wave = True
+            self.options["boost"].without_math = True
+            self.options["boost"].without_graph = True
+            self.options["boost"].without_graph_parallel = True
+            self.options["boost"].without_nowide = True
+
     def build(self):
         cmake = CMake(self)
         cmake.configure()
