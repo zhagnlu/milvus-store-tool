@@ -10,12 +10,6 @@ class StoreTool(ConanFile):
     # Specify the package settings and options
     settings = "os", "compiler", "build_type", "arch"
     default_options = {
-        "arrow:parquet": True,
-        "arrow:compute": True,
-        "arrow:with_zstd": True,
-        "arrow:shared": False,
-        "arrow:with_thrift": True,
-        "arrow:with_jemalloc": True,
         "aws-sdk-cpp:text-to-speech": False,
         "aws-sdk-cpp:transfer": False,
         "gtest:build_gmock": False,
@@ -32,7 +26,6 @@ class StoreTool(ConanFile):
                  "yaml-cpp/0.7.0",
                  "openssl/1.1.1q",
                  "libcurl/7.86.0",
-		 "arrow/11.0.0",
                  "protobuf/3.21.4",
                  "re2/20230301",
                  "aws-c-common/0.8.2@milvus/dev",
@@ -61,7 +54,6 @@ class StoreTool(ConanFile):
             if self.settings.arch not in ("x86_64", "x86"):
                 del self.options["folly"].use_sse4_2
 
-            self.options["arrow"].with_jemalloc = False
             self.options["boost"].without_fiber = True
             self.options["boost"].without_json = True
             self.options["boost"].without_wave = True
