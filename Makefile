@@ -41,7 +41,7 @@ CMAKE_BUILD_CMD = cd $(CMAKE_BUILD_DIR) && cmake --build .
 all: conan_install cmake_build
 
 conan_remote_add:
-    $(conan_remote_add_cmd)
+	$(conan_remote_add_cmd)
 
 conan_install: conan_remote_add
 	@echo "Installing dependencies with Conan..."

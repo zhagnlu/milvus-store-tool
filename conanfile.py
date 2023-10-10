@@ -14,6 +14,7 @@ class StoreTool(ConanFile):
         "arrow:compute": True,
         "arrow:with_zstd": True,
         "arrow:shared": False,
+        "arrow:with_thrift": True,
         "arrow:with_jemalloc": True,
         "aws-sdk-cpp:text-to-speech": False,
         "aws-sdk-cpp:transfer": False,
@@ -24,6 +25,7 @@ class StoreTool(ConanFile):
 
     # Define the package requirements (dependencies)
     requires = ( "boost/1.79.0",
+                 "zlib/1.2.13",
                  "gflags/2.2.2",
                  "glog/0.6.0",
                  "gtest/1.8.1",
